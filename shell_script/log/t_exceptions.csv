@@ -1,0 +1,6 @@
+Count,Message,Traceback,Nodes
+48300,No tasks defined on QuickstartUser. Use the @task decorator or set the 'tasks' attribute of the User (or mark it as abstract = True if you only intend to subclass it),"  File ""/home/nishijima/.local/lib/python3.10/site-packages/locust/user/task.py"", line 342, in run
+    self.schedule_task(self.get_next_task())
+  File ""/home/nishijima/.local/lib/python3.10/site-packages/locust/user/task.py"", line 482, in get_next_task
+    raise Exception(
+",local

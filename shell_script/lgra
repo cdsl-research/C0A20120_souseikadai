@@ -1,0 +1,22 @@
+#!/bin/sh
+ 
+start_time=`date +%s`
+
+locust -u 1000 -r 50 -t 300 -H http://192.168.100.54:31122 -f locust_frontend.py --autostart --autoquit=30 --csv=log/frontend --csv-full-history
+python3 frontend_graph.py 
+locust -u 1000 -r 50 -t 300 -H http://192.168.100.54:31202 -f locust_cart.py --autostart --autoquit=30 --csv=log/cart --csv-full-history
+python3 cart_graph.py
+locust -u 1000 -r 50 -t 300 -H http://192.168.100.54:31202 -f locust_currency.py --autostart --autoquit=30 --csv=log/currency --csv-full-history
+python3 currency_graph.py
+locust -u 1000 -r 50 -t 300 -H http://192.168.100.54:31202 -f locust_product.py --autostart --autoquit=30 --csv=log/product --csv-full-history
+python3 product_graph.py
+locust -u 1000 -r 50 -t 300 -H http://192.168.100.54:31202 -f locust_checkout.py --autostart --autoquit=30 --csv=log/checkout --csv-full-history
+python3 checkout_graph.py
+
+sleep 10
+ 
+end_time=`date +%s`
+ 
+run_time=$((end_time - start_time))
+ 
+echo $run_time
